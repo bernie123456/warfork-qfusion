@@ -284,7 +284,7 @@ const char *Sys_FS_GetSteamWorkshopDirectory( void )
 		return NULL;
 
 #ifdef USE_STEAM_WORKSHOP
-	Q_strncpyz( steamhome, va( "%s/Steam/SteamApps/workshop/content/671610/", COM_SanitizeFilePath( steamhome ) ), sizeof( steamhome ) );
+	Q_strncpyz( steamhome, va( "%s/Steam/steamapps/workshop/content/671610/", COM_SanitizeFilePath( steamhome ) ), sizeof( steamhome ) );
 #endif
 
 	return steamhome;

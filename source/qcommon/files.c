@@ -4322,7 +4322,6 @@ void FS_Init( void )
 
 	if( steamhomedir != NULL && fs_usesteamworkshopdir->integer ) {
 		FS_AddBasePath( steamhomedir );
-		fs_write_searchpath = fs_basepaths;
 	}
 
 	fs_downloads_searchpath = NULL;

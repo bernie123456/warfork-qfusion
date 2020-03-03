@@ -4320,11 +4320,6 @@ void FS_Init( void )
 	fs_usesteamworkshopdir = Cvar_Get( "fs_usesteamworkshopdir", "0", CVAR_NOSET );
 #endif
 
-	if( steamhomedir != NULL && fs_usesteamworkshopdir->integer ) {
-		FS_AddBasePath( steamhomedir );
-		fs_write_searchpath = fs_basepaths;
-	}
-
 	fs_downloads_searchpath = NULL;
 	if( fs_usedownloadsdir->integer ) {
 		if( homedir != NULL && fs_usehomedir->integer ) {
@@ -4347,6 +4342,11 @@ void FS_Init( void )
 
 	if( homedir != NULL && fs_usehomedir->integer ) {
 		FS_AddBasePath( homedir );
+		fs_write_searchpath = fs_basepaths;
+	}
+
+	if( steamhomedir != NULL && fs_usesteamworkshopdir->integer ) {
+		FS_AddBasePath( steamhomedir );
 		fs_write_searchpath = fs_basepaths;
 	}
 

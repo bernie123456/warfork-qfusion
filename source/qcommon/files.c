@@ -171,6 +171,7 @@ static cvar_t *fs_basepath;
 static cvar_t *fs_cdpath;
 static cvar_t *fs_usehomedir;
 static cvar_t *fs_usedownloadsdir;
+static cvar_t *fs_useworkshopdir;
 static cvar_t *fs_basegame;
 static cvar_t *fs_game;
 
@@ -4308,6 +4309,7 @@ void FS_Init( void )
 		fs_usehomedir = Cvar_Get( "fs_usehomedir", "0", CVAR_NOSET );
 #endif
 	fs_usedownloadsdir = Cvar_Get( "fs_usedownloadsdir", "1", CVAR_NOSET );
+	fs_useworkshopdir = Cvar_Get( "fs_useworkshopdir", "1", CVAR_NOSET );
 
 	fs_downloads_searchpath = NULL;
 	if( fs_usedownloadsdir->integer ) {
@@ -4321,6 +4323,11 @@ void FS_Init( void )
 		FS_AddBasePath( downloadsdir );
 		fs_downloads_searchpath = fs_basepaths;
 	}
+
+	if( fs_useworkshopdir->integer ) {
+	}
+
+
 
 	if( fs_cdpath->string[0] )
 		FS_AddBasePath( fs_cdpath->string );

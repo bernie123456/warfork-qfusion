@@ -261,9 +261,9 @@ const char *Sys_FS_GetSteamWorkshopDirectory( void )
 	int csisw = CSIDL_PROGRAM_FILESX86;
 #endif
 
-	static char steamhome[MAX_PATH] = { '\0' };
-	if( steamhome[0] != '\0' )
-		return steamhome;
+	static char workshophome[MAX_PATH] = { '\0' };
+	if( workshophome[0] != '\0' )
+		return workshophome;
 
 #ifndef SHGetFolderPath
 	HINSTANCE shFolderDll = LoadLibrary( "shfolder.dll" );
@@ -273,21 +273,21 @@ const char *Sys_FS_GetSteamWorkshopDirectory( void )
 
 	SHGetFolderPath = GetProcAddress( shFolderDll, "SHGetFolderPathA" );
 	if( SHGetFolderPath )
-		SHGetFolderPath( NULL, csisw, 0, 0, steamhome );
+		SHGetFolderPath( NULL, csisw, 0, 0, workshophome );
 
 	FreeLibrary( shFolderDll );
 #else
-	SHGetFolderPath( 0, csisw, 0, 0, steamhome );
+	SHGetFolderPath( 0, csisw, 0, 0, workshophome );
 #endif
 
-	if ( steamhome[0] == '\0' )
+	if ( workshophome[0] == '\0' )
 		return NULL;
 
 #ifdef USE_STEAM_WORKSHOP
-	Q_strncpyz( steamhome, va( "%s/Steam/steamapps/workshop/content/671610/", COM_SanitizeFilePath( steamhome ) ), sizeof( steamhome ) );
+	Q_strncpyz( workshophome, va( "%s/Steam/steamapps/workshop/content/671610/", COM_SanitizeFilePath( workshophome ) ), sizeof( workshophome ) );
 #endif
 
-	return steamhome;
+	return workshophome;
 
 }
 
